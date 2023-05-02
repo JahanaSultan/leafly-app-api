@@ -23,4 +23,10 @@ urlpatterns = [
     path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'), name='api-docs'),
     path('api/user/', include('user.urls')),
+    path('api/tea/', include('tea.urls')),
 ]
+
+
+
+admin.site.site_header = "Leafly Tea Shop Admin"
+admin.site.site_title = "Leafly Tea Shop Admin Portal"

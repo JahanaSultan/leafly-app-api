@@ -28,7 +28,8 @@ class UserSerializer(serializers.ModelSerializer):
     
 
 
-class AuthTokenSerializer(serializers.Serializer): 
+
+class AuthTokenSerializer(serializers.Serializer):
     """Serializer for the user authentication object"""
     email = serializers.EmailField()
     password = serializers.CharField(
@@ -50,3 +51,4 @@ class AuthTokenSerializer(serializers.Serializer):
             raise serializers.ValidationError(msg, code='authentication')
 
         attrs['user'] = user
+        return attrs
