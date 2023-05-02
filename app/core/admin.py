@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from .models import User, Tea
 from django.utils.translation import gettext as _
 # Register your models here.
 
@@ -37,6 +37,14 @@ class UserAdmin(BaseUserAdmin):
             }
         ),
     )
+    
+    
+class TeaAdmin(admin.ModelAdmin):
+    list_display = ['name', 'price', 'is_available', 'created_at']
+    list_filter = ['is_available', 'created_at', 'name', 'price']
+    search_fields = ['name', 'price', 'description']
+    
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Tea, TeaAdmin)
