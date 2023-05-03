@@ -6,7 +6,7 @@ class TeaSerializer(serializers.ModelSerializer):
     """Serializer for the tea object"""
     class Meta:
         model = Tea
-        fields = ['id', 'name', 'price']
+        fields = ['id', 'name', 'price', 'weight', 'new_arrival', 'premium']
         read_only_fields = ['id', 'created_at']
 
 
@@ -14,4 +14,4 @@ class TeaDetailSerializer(TeaSerializer):
     """Serialize a tea detail"""
     class Meta:
         model=Tea
-        fields = TeaSerializer.Meta.fields+['description', 'is_available']
+        fields = TeaSerializer.Meta.fields+['description', 'is_available', 'stock_quantity']

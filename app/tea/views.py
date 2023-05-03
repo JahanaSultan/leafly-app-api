@@ -12,7 +12,7 @@ class TeaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TeaDetailSerializer
     queryset = Tea.objects.all()
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, AdminOnlyPermission)
     
     def get_serializer_class(self):
         """Return serializer class for request"""

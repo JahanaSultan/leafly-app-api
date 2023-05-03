@@ -44,14 +44,29 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Tea(models.Model):
     """Tea object"""
+
+    WEIGHT_CHOICES = (
+        ('50', '50'),
+        ('100', '100'),
+        ('200', '200'),
+        ('250', '250'),
+        ('500', '500'),
+        ('1000', '1000'),
+    )
+
     name = models.CharField(max_length=255, verbose_name='Çayın adı')
     price = models.DecimalField(
         max_digits=5, decimal_places=2, verbose_name='Qiyməti')
-    weight = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Çəkisi', null=True, blank=True)
+    weight = models.CharField(
+        max_length=250, verbose_name='Çəkisi', null=True, blank=True, choices=WEIGHT_CHOICES)
     description = models.TextField(blank=True, verbose_name='Açıqlama')
     is_available = models.BooleanField(default=True, verbose_name='Mövcuddur')
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name='Yaradılma tarixi')
+    new_arrival = models.BooleanField(default=False, verbose_name='Yeni gələn')
+    premium = models.BooleanField(default=False, verbose_name='Premium')
+    stock_quantity = models.IntegerField(
+        verbose_name='Stok sayı', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -60,3 +75,23 @@ class Tea(models.Model):
         verbose_name_plural = 'Çaylar'
         verbose_name = 'Çay'
         ordering = ['-created_at']
+
+
+
+class Teaware(models.Model):
+    """Teaware object"""
+    name=models.CharField(max_length=255, verbose_name='Adı')
+    description=models.TextField(blank=True, verbose_name='Açıqlama')
+    price=models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Qiyməti')
+    is_available=models.BooleanField(default=True, verbose_name='Mövcuddur')
+    created_at=models.DateTimeField(auto_now_add=True, verbose_name='Yaradılma tarixi')
+    stock_quantity=models.IntegerField(verbose_name='Stok sayı', null=True, blank=True)
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Çay Ləvazimatları'
+        verbose_name = 'Çay Ləvazimatı'
+        ordering = ['-created_at']
+    

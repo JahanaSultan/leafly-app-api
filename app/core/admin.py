@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Tea
+from .models import User, Tea, Teaware
 from django.utils.translation import gettext as _
 # Register your models here.
 
@@ -45,6 +45,6 @@ class TeaAdmin(admin.ModelAdmin):
     search_fields = ['name', 'price', 'description']
     
 
-
 admin.site.register(User, UserAdmin)
 admin.site.register(Tea, TeaAdmin)
+admin.site.register(Teaware, TeaAdmin)
